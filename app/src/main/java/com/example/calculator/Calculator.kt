@@ -16,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.Modifier
@@ -76,6 +77,10 @@ fun CalculatorButtons(buttonText: String, onClick : () -> Unit) {
 
 @Composable
 fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
+
+    val equationText = viewModel.equationText.observeAsState()
+    val resultText = viewModel.equationText.observeAsState()
+
     Box(modifier = modifier) {
 
         Column (
@@ -86,7 +91,7 @@ fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
 
             // Inputted math expression
             Text(
-                text = "123 + 123",
+                text = equationText.value?:"",
                 style = TextStyle(
                     fontSize = 30.sp,
                     textAlign = TextAlign.End
@@ -99,7 +104,7 @@ fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
 
             // Math expression results
             Text(
-                text = "246",
+                text = resultText.value?:"",
                 style = TextStyle(
                     fontSize = 60.sp,
                     textAlign = TextAlign.End
