@@ -58,4 +58,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("androidx.compose.runtime:runtime-livedata:1.8.3")
+    implementation("org.mozilla:rhino:1.7R4")
 }
