@@ -20,7 +20,11 @@ class CalculatorViewModel : ViewModel(){
         context.optimizationLevel = -1
 
         val scriptable : Scriptable = context.initStandardObjects()
-        val finalResult = context.evaluateString(scriptable, equation, "Javascript", 1, null).toString()
+        var finalResult = context.evaluateString(scriptable, equation, "Javascript", 1, null).toString()
+
+        if (finalResult.endsWith(".0")) {
+            finalResult = finalResult.replace(".0", "")
+        }
 
         return finalResult
     }
@@ -47,10 +51,14 @@ class CalculatorViewModel : ViewModel(){
                 return
 
             } else {
+
                 _equationText.value = it + buttonText
 
               // Calculate Result
-                Log.i("Equation", _equationText.value.toString())
+                try {
+                    _resultText.value = calculateResult(_equationText.value.toString())
+
+                } catch (_ : Exception){}
             }
         }
     }

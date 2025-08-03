@@ -79,7 +79,7 @@ fun CalculatorButtons(buttonText: String, onClick : () -> Unit) {
 fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
 
     val equationText = viewModel.equationText.observeAsState()
-    val resultText = viewModel.equationText.observeAsState()
+    val resultText = viewModel.resultText.observeAsState()
 
     Box(modifier = modifier) {
 
