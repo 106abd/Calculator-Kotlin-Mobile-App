@@ -38,7 +38,7 @@ val buttonList = listOf(
     "AC", "0", ".", "="
 )
 
-
+// Assign button background colors depending on the button text
 fun getColor(buttonText: String) : Color {
 
     if (buttonText == "C" || buttonText == "AC") {
@@ -54,6 +54,7 @@ fun getColor(buttonText: String) : Color {
 }
 
 
+// Composable meant to generate all create all of the buttons UI and assign their onClick function
 @Composable
 fun CalculatorButtons(buttonText: String, onClick : () -> Unit) {
 
@@ -78,6 +79,7 @@ fun CalculatorButtons(buttonText: String, onClick : () -> Unit) {
 @Composable
 fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
 
+    // UI State Updaters
     val equationText by viewModel.equationText
     val resultText by viewModel.resultText
 
