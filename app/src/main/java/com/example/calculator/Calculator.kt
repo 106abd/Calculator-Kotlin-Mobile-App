@@ -12,10 +12,10 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 
@@ -78,8 +78,8 @@ fun CalculatorButtons(buttonText: String, onClick : () -> Unit) {
 @Composable
 fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
 
-    val equationText = viewModel.equationText.observeAsState()
-    val resultText = viewModel.resultText.observeAsState()
+    val equationText by viewModel.equationText
+    val resultText by viewModel.resultText
 
     Box(modifier = modifier) {
 
@@ -91,7 +91,7 @@ fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
 
             // Inputted math expression
             Text(
-                text = equationText.value?:"",
+                text = equationText,
                 style = TextStyle(
                     fontSize = 30.sp,
                     textAlign = TextAlign.End
@@ -104,7 +104,7 @@ fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
 
             // Math expression results
             Text(
-                text = resultText.value?:"",
+                text = resultText,
                 style = TextStyle(
                     fontSize = 60.sp,
                     textAlign = TextAlign.End
